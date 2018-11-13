@@ -54,9 +54,9 @@ const server = http.createServer(async (req, res) => {
 })
 
 server.listen(port, () => {
-    console.log(`Serving ${cliDirectory}`);
-    console.log(`Server running on http://localhost:${port} or http://${ip}:${port}`);
-    console.log('Hit CTRL-C to stop the server');
+    console.log(`\x1b[33mServing \x1b[36m${cliDirectory}`);
+    console.log(`\x1b[33mServer running on:\nhttp://localhost:${port}\nhttp://${ip}:${port}`);
+    console.log('\x1b[0mHit CTRL-C to stop the server');
 })
 
 
@@ -335,30 +335,32 @@ function checkUpdates(){
 function printSignature(){
 
     const twSignature = `
-              ,*********************.
+    \x1b[36m          ,*********************.
              #,./(((((((((((((((((((*
-             %%#,               ./((*
-             %%%/                /((*
-             %%%/                /((*
-             %%%%%%%%%%%%%%%(.   /((*
-             %%%(........*%%%%   /((*
-             %%%#////*    *%%%.  /((*
-             %%%(,,,,,    *%%%.  /((*
-             #%%%,.     ..#%%%   /((*
-             .(%%%%%%%%%%%%%#.   /((*
-                                 /((*
+     \x1b[34m        %%#,               \x1b[36m./((*
+     \x1b[34m        %%%/               \x1b[36m /((*
+     \x1b[34m        %%%/               \x1b[36m /((*
+     \x1b[34m        %%%%%%%%%%%%%%%(.  \x1b[36m /((*
+     \x1b[34m        %%%(........*%%%%  \x1b[36m /((*
+     \x1b[34m        %%%#////*    *%%%. \x1b[36m /((*
+     \x1b[34m        %%%(,,,,,    *%%%. \x1b[36m /((*
+     \x1b[34m        #%%%,.     ..#%%%  \x1b[36m /((*
+     \x1b[34m        .(%%%%%%%%%%%%%#.  \x1b[36m /((*
+     \x1b[34m                           \x1b[36m /((*
                                  /((*
            (((((((((((((((((((((((((*
            (((((((((((((((((((((((((*
-
+\x1b[0m
   _______       _          __          __  _     
  |__   __|     (_)         \\ \\        / / | |    
     | |_ __ ___ _ _ __   __ \\ \\  /\\  / /__| |__  
     | | '__/ _ \\ | '_ \\ / _\` \\ \\/  \\/ / _ \\ '_ \\ 
     | | | |  __/ | | | | (_| |\\  /\\  /  __/ |_) |
     |_|_|  \\___|_|_| |_|\\__,_| \\/  \\/ \\___|_.__/ 
-    
+    \x1b[0m
             https://treinaweb.com.br
 `;
     console.log(twSignature);
 }
+
+
