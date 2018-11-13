@@ -25,7 +25,8 @@ Now you can visit [http://localhost:3002](http://localhost:3002) to view your se
 | Name        | Description           | Example  |
 | ------------- |-------------| -----|
 | --port     | port to use (defaults to 3002) | --port=4200 |
-| --temp     | data will be erased when stop the server (defaults to false) | --temp=true |
+| --temp     | data will be erased when stop the server (defaults to false) | --temp |
+| --version     | shows current tool version (defaults to false) | --version |
 
 
 ### CRUD Operations

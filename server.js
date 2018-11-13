@@ -11,56 +11,70 @@ const http = require('http'),
     memoryDB = {},
     port = getArg(args, 'port', 3002),
     isTempData = getArg(args, 'temp', false),
+    showVersion = getArg(args, 'version', false),
     cliDirectory = `${process.cwd()}/`;
 
+let server;
+
 printSignature();
+
+if(showVersion){
+    getCurrentVersion().then(version => {
+        console.log(`              \x1b[36m  tw-dev-server
+           \x1b[33m Current Version: \x1b[0m${version} `);
+    })
+}else{
+    server = startServer();
+}
 
 /* Server
 **********/
 
-const server = http.createServer(async (req, res) => {
-    const url = removeArgs(removeUrlEndSlash(req.url));
+function startServer(){
+    server = http.createServer(async (req, res) => {
+        const url = removeArgs(removeUrlEndSlash(req.url));
 
-    if(isAPI(url)){
-        res.writeHead(200, {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin'  : '*',
-            'Access-Control-Request-Method': '*',
-            'Access-Control-Allow-Methods' : '*',
-            'Access-Control-Allow-Headers' : '*',
-            'Access-Control-Allow-Credentials': true
-        });
+        if(isAPI(url)){
+            res.writeHead(200, {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin'  : '*',
+                'Access-Control-Request-Method': '*',
+                'Access-Control-Allow-Methods' : '*',
+                'Access-Control-Allow-Headers' : '*',
+                'Access-Control-Allow-Credentials': true
+            });
 
-        const urlObj = urlReader(req.url),
-            method = req.method;
+            const urlObj = urlReader(req.url),
+                method = req.method;
 
-        let reqObj = {};
+            let reqObj = {};
 
-        if(req.method === 'POST' || req.method === 'PUT'){
-            reqObj = await readReqObj(req);
+            if(req.method === 'POST' || req.method === 'PUT'){
+                reqObj = await readReqObj(req);
+            }
+            const resObj = await handleRequisition(method, urlObj, reqObj);
+            res.write(JSON.stringify(resObj));
+        }else{
+            try{
+                const filePath = isFilePath(url) ? url : `${url}/index.html`;
+                const content = fs.readFileSync(cliDirectory + filePath);
+                res.writeHead(200);
+                res.write(content);
+            }catch(e){
+                res.writeHead(404);
+                res.write('Not Found');
+            }
         }
-        const resObj = await handleRequisition(method, urlObj, reqObj);
-        res.write(JSON.stringify(resObj));
-    }else{
-        try{
-            const filePath = isFilePath(url) ? url : `${url}/index.html`;
-            const content = fs.readFileSync(cliDirectory + filePath);
-            res.writeHead(200);
-            res.write(content);
-        }catch(e){
-            res.writeHead(404);
-            res.write('Not Found');
-        }
-    }
-    res.end();
-})
+        res.end();
+    })
 
-server.listen(port, () => {
-    console.log(`\x1b[33mServing \x1b[36m${cliDirectory}`);
-    console.log(`\x1b[33mServer running on:\nhttp://localhost:${port}\nhttp://${ip}:${port}`);
-    console.log('\x1b[0mHit CTRL-C to stop the server\n');
-    checkUpdates();
-})
+    server.listen(port, () => {
+        console.log(`\x1b[33mServing \x1b[36m${cliDirectory}`);
+        console.log(`\x1b[33mServer running on:\nhttp://localhost:${port}\nhttp://${ip}:${port}`);
+        console.log('\x1b[0mHit CTRL-C to stop the server\n');
+        checkUpdates();
+    })
+}
 
 
 /* Requisition Handlers
@@ -330,7 +344,7 @@ function listArgs(){
         const [argName, value] = val.split('=');
 
         if(pattern.test(argName)){
-            args[argName.replace('--', '')] = value;
+            args[argName.replace('--', '')] = value || true;
         }
     });
     return args;
