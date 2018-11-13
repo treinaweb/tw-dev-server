@@ -3,10 +3,10 @@ const http = require('http'),
     path = require('path'),
     ip = getIPAddress(),
     args = listArgs(),
-    dbFolder = './db/',
-    memoryDB = {};
-
-const port = getArg(args, 'port', 3002);
+    dbFolder = './.db/',
+    memoryDB = {},
+    port = getArg(args, 'port', 3002),
+    isTempData = getArg(args, 'temp', false);
 
 
 
@@ -21,7 +21,8 @@ const server = http.createServer(async (req, res) => {
             'Access-Control-Allow-Origin'  : '*',
             'Access-Control-Request-Method': '*',
             'Access-Control-Allow-Methods' : '*',
-            'Access-Control-Allow-Headers' : '*'
+            'Access-Control-Allow-Headers' : '*',
+            'Access-Control-Allow-Credentials': true
         });
 
         const urlObj = urlReader(req.url),
@@ -149,38 +150,47 @@ function pathCreator(path, fileName = ''){
 function readFile(path, fileName){
     const filePath = pathCreator(path, fileName);
     let content = readMemory(path, fileName);
-    if(content){
-        return Promise.resolve(content);
+    if(!isTempData){
+        if(content){
+            return Promise.resolve(content);
+        }else{
+            return new Promise(resolve => {
+                fs.readFile(filePath, (err, buf) => {
+                    if(err){
+                        resolve([])
+                    }else{
+                        content = JSON.parse(buf.toString());
+                        writeMemory(content, path, fileName);
+                        resolve(content);
+                    }
+                });
+            })
+        }
     }else{
-        return new Promise(resolve => {
-            fs.readFile(filePath, (err, buf) => {
-                if(err){
-                    resolve([])
-                }else{
-                    content = JSON.parse(buf.toString());
-                    writeMemory(content, path, fileName);
-                    resolve(content);
-                }
-            });
-        })
+        return Promise.resolve(content || []);
     }
 }
 
 function writeFile(data, path, fileName){
     const filePath = pathCreator(path, fileName);
     let content = readMemory(path, fileName);
-    if(content){
-        writeMemory(data, path, fileName);
-        fs.writeFile(filePath, JSON.stringify(data), () => {});
-        return Promise.resolve(data);
+    if(!isTempData){
+        if(content){
+            writeMemory(data, path, fileName);
+            fs.writeFile(filePath, JSON.stringify(data), () => {});
+            return Promise.resolve(data);
+        }else{
+            return new Promise(resolve => {
+                fs.writeFile(filePath, JSON.stringify(data), (err) => {
+                    if (err) console.log(err);
+                    writeMemory(data, path, fileName);
+                    resolve(data);
+                });
+            })
+        }
     }else{
-        return new Promise(resolve => {
-            fs.writeFile(filePath, JSON.stringify(data), (err) => {
-                if (err) console.log(err);
-                writeMemory(data, path, fileName);
-                resolve(data);
-            });
-        })
+        writeMemory(data, path, fileName);
+        return Promise.resolve(data);
     }
 }
 
