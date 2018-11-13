@@ -14,7 +14,8 @@ const http = require('http'),
 **********/
 
 const server = http.createServer(async (req, res) => {
-    const url = req.url;
+    const url = removeUrlEndSlash(req.url);
+    console.log(url)
     if(url !== '/favicon.ico'){
         res.writeHead(200, {
             'Content-Type': 'application/json',
@@ -53,6 +54,10 @@ function urlReader(url){
         className,
         id
     };
+}
+
+function removeUrlEndSlash(url){
+    return url.replace(/\W*$/, '');
 }
 
 function handleRequisition(method, urlObj, reqObj){
