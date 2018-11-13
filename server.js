@@ -326,7 +326,6 @@ async function checkUpdates(){
     if(await hasInternetConnection()){
         Promise.all([getCurrentVersion(), getRepositoryVersion()])
             .then(([currentVersion, repositoryVersion]) => {
-                //printAvailableUpdate(currentVersion, repositoryVersion)
                 printAvailableUpdate(currentVersion, repositoryVersion)
             })
     }
@@ -360,7 +359,7 @@ function hasInternetConnection(){
 function getCurrentVersion(){
     let version = '0';
     return new Promise(resolve => {
-        fs.readFile('./package.json', (err, buf) => {
+        fs.readFile(__dirname + '/package.json', (err, buf) => {
             if(!err){
                 const content = JSON.parse(buf.toString());
                 version = content.version;
