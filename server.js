@@ -56,7 +56,7 @@ const server = http.createServer(async (req, res) => {
 server.listen(port, () => {
     console.log(`\x1b[33mServing \x1b[36m${cliDirectory}`);
     console.log(`\x1b[33mServer running on:\nhttp://localhost:${port}\nhttp://${ip}:${port}`);
-    console.log('\x1b[0mHit CTRL-C to stop the server');
+    console.log('\x1b[0mHit CTRL-C to stop the server\n');
 })
 
 
@@ -319,16 +319,16 @@ function getArg(args, argName, defaultValue){
     return args[argName] || defaultValue;
 }
 
-function checkUpdates(){
+async function checkUpdates(){
     let isUpdateAvailable = false;
     if(isUpdateAvailable){
         console.log(`
-   ╭───────────────────────────────────────-──-──-──-──-─╮
-   │                                                     │
-   │                 Update available                    │
-   │   Run npm i -g @treinaweb/tw-dev-server to update   │
-   │                                                     │
-   ╰─────────────────────────────────────────-──-──-──-──╯`);
+ \x1b[33m╭───────────────────────────────────────-──-──-──-──-─╮
+ \x1b[33m│                                                     │
+ \x1b[33m│  \x1b[0m               Update available                   \x1b[33m │
+ \x1b[33m│  \x1b[0m Run \x1b[36mnpm i -g @treinaweb/tw-dev-server\x1b[0m to update  \x1b[33m │
+ \x1b[33m│                                                     │
+ \x1b[33m╰─────────────────────────────────────────-──-──-──-──╯`);
     }
 }
 
@@ -358,9 +358,10 @@ function printSignature(){
     | | | |  __/ | | | | (_| |\\  /\\  /  __/ |_) |
     |_|_|  \\___|_|_| |_|\\__,_| \\/  \\/ \\___|_.__/ 
     \x1b[0m
-            https://treinaweb.com.br
-`;
+            https://treinaweb.com.br`;
     console.log(twSignature);
 }
 
 
+
+checkUpdates()
