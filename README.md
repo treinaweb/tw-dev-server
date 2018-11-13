@@ -44,8 +44,8 @@ CRUD operations are available under "/api/".
 
 *URL Examples:*
 
-- http://localhost:3002/api/my-school/books/123
+- http://localhost:3002/api/my-school/books&id=123
 - http://localhost:3002/api/my-school/users/
 - http://localhost:3002/api/market/products/
 - http://localhost:3002/api/v1/market/products/
-- http://localhost:3002/api/some-prefix/another-prefix/market/products/12345
+- http://localhost:3002/api/some-prefix/another-prefix/market/products&id=12345
