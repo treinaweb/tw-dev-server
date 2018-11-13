@@ -1,0 +1,16 @@
+{
+  "name": "tw-lite-server",
+  "version": "1.0.0",
+  "description": "simple data server for development",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "server",
+    "treinaweb",
+    "hanashiro"
+  ],
+  "author": "hanashiro",
+  "license": "ISC"
+}

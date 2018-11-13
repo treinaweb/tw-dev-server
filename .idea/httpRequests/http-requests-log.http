@@ -1,0 +1,468 @@
+POST http://localhost:3002/react/books/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T081833-3.200.json
+
+###
+
+POST http://localhost:3002/react/books/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T081833-2.200.json
+
+###
+
+POST http://localhost:3002/react/books/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/books/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/books/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T081833-1.200.json
+
+###
+
+POST http://localhost:3002/react/books/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T081833.200.json
+
+###
+
+POST http://localhost:3002/react/books/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/books/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T081832-2.200.json
+
+###
+
+POST http://localhost:3002/react/books/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T081832-1.200.json
+
+###
+
+POST http://localhost:3002/react/books/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T081832.200.json
+
+###
+
+POST http://localhost:3002/react/all/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T080803.200.json
+
+###
+
+DELETE http://localhost:3002/react/all/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T080757.200.json
+
+###
+
+DELETE http://localhost:3002/react/all/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T074200-1.200.json
+
+###
+
+DELETE http://localhost:3002/react/all/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T074200.200.json
+
+###
+
+DELETE http://localhost:3002/react/all/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T074128.200.json
+
+###
+
+POST http://localhost:3002/react/all/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T074058-1.200.json
+
+###
+
+POST http://localhost:3002/react/all/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T074058.200.json
+
+###
+
+POST http://localhost:3002/react/all/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T074057.200.json
+
+###
+
+POST http://localhost:3002/react/all/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T074056.200.json
+
+###
+
+DELETE http://localhost:3002/react/all/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073951.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073950-1.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073950.200.json
+
+###
+
+DELETE http://localhost:3002/react/livros3/all
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073939.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073921-1.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073921.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073920-1.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073920.200.json
+
+###
+
+DELETE http://localhost:3002/react/livros3/all
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073851.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073836-1.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073836.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073835-1.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073835.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073834.200.json
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073810.200.json
+
+###
+
+POST http://localhost:3003/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3003/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3003/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+POST http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+###
+
+GET http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073517.200.json
+
+###
+
+GET http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073516.200.json
+
+###
+
+GET http://localhost:3002/react/livros3/
+Accept: */*
+Cache-Control: no-cache
+
+{"a": 23}
+
+<> 2018-11-13T073514.200.json
+
+###
+
