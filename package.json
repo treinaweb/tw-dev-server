@@ -1,5 +1,5 @@
 {
-  "name": "tw-lite-server",
+  "name": "@treinaweb/tw-dev-server",
   "version": "1.0.0",
   "description": "simple data server for development",
   "main": "server.js",
@@ -11,6 +11,13 @@
     "treinaweb",
     "hanashiro"
   ],
-  "author": "hanashiro",
-  "license": "ISC"
+  "author": "Akira Hanashiro <felipe.hanashiro@treinaweb.com.br> (https://github.com/hanashiro)",
+  "license": "ISC",
+  "homepage": "https://treinaweb.com.br",
+  "preferGlobal": true,
+  "bin": "./server.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/treinaweb/tw-dev-server.git"
+  }
 }

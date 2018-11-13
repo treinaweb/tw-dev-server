@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const http = require('http'),
     fs = require('fs'),
     path = require('path'),
@@ -8,7 +10,7 @@ const http = require('http'),
     port = getArg(args, 'port', 3002),
     isTempData = getArg(args, 'temp', false);
 
-
+printSignature();
 
 /* Server
 **********/
@@ -314,3 +316,39 @@ function listArgs(){
 function getArg(args, argName, defaultValue){
     return args[argName] || defaultValue;
 }
+
+function printSignature(){
+
+    const twSignature = `
+              ,*********************.
+             #,./(((((((((((((((((((*
+             %%#,               ./((*
+             %%%/                /((*
+             %%%/                /((*
+             %%%%%%%%%%%%%%%(.   /((*
+             %%%(........*%%%%   /((*
+             %%%#////*    *%%%.  /((*
+             %%%(,,,,,    *%%%.  /((*
+             #%%%,.     ..#%%%   /((*
+             .(%%%%%%%%%%%%%#.   /((*
+                                 /((*
+                                 /((*
+           (((((((((((((((((((((((((*
+           (((((((((((((((((((((((((*
+
+  _______       _          __          __  _     
+ |__   __|     (_)         \\ \\        / / | |    
+    | |_ __ ___ _ _ __   __ \\ \\  /\\  / /__| |__  
+    | | '__/ _ \\ | '_ \\ / _\` \\ \\/  \\/ / _ \\ '_ \\ 
+    | | | |  __/ | | | | (_| |\\  /\\  /  __/ |_) |
+    |_|_|  \\___|_|_| |_|\\__,_| \\/  \\/ \\___|_.__/ 
+    
+            https://treinaweb.com.br
+`;
+    console.log(twSignature);
+}
+
+
+
+
+
