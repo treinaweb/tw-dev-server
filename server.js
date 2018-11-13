@@ -8,7 +8,8 @@ const http = require('http'),
     dbFolder = './.db/',
     memoryDB = {},
     port = getArg(args, 'port', 3002),
-    isTempData = getArg(args, 'temp', false);
+    isTempData = getArg(args, 'temp', false),
+    cliDirectory = `${process.cwd()}/`;
 
 printSignature();
 
@@ -41,7 +42,7 @@ const server = http.createServer(async (req, res) => {
     }else{
         try{
             const filePath = isFilePath(url) ? url : `${url}/index.html`;
-            const content = fs.readFileSync(__dirname + filePath);
+            const content = fs.readFileSync(cliDirectory + filePath);
             res.writeHead(200);
             res.write(content);
         }catch(e){
@@ -53,8 +54,9 @@ const server = http.createServer(async (req, res) => {
 })
 
 server.listen(port, () => {
+    console.log(`Serving ${cliDirectory}`);
     console.log(`Server running on http://localhost:${port} or http://${ip}:${port}`);
-    console.log('Press Ctrl + C to exit');
+    console.log('Hit CTRL-C to stop the server');
 })
 
 
@@ -317,6 +319,19 @@ function getArg(args, argName, defaultValue){
     return args[argName] || defaultValue;
 }
 
+function checkUpdates(){
+    let isUpdateAvailable = false;
+    if(isUpdateAvailable){
+        console.log(`
+   ╭───────────────────────────────────────-──-──-──-──-─╮
+   │                                                     │
+   │                 Update available                    │
+   │   Run npm i -g @treinaweb/tw-dev-server to update   │
+   │                                                     │
+   ╰─────────────────────────────────────────-──-──-──-──╯`);
+    }
+}
+
 function printSignature(){
 
     const twSignature = `
@@ -347,8 +362,3 @@ function printSignature(){
 `;
     console.log(twSignature);
 }
-
-
-
-
-
