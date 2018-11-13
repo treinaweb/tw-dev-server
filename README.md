@@ -30,16 +30,17 @@ Now you can visit [http://localhost:3002](http://localhost:3002) to view your se
 
 ### CRUD Operations
 
+CRUD operations are available under "/api/".
 
 | Method        | URL           | Description  |
 | ------------- |-------------| -----|
 |  GET    | http://localhost:3002/api/:project-name/:object-name | returns all :object-name from storage |
-|  GET    | http://localhost:3002/api/:project-name/:object-name/:id | returns the :object-name with the :id ID |
+|  GET    | http://localhost:3002/api/:project-name/:object-name&id=:id | returns the :object-name with the :id ID |
 |  POST    | http://localhost:3002/api/:project-name/:object-name | saves some data on :object-name |
-|  PUT     | http://localhost:3002/api/:project-name/:object-name/:id | updates the :object-name with the :id ID |
-|  DELETE    | http://localhost:3002/api/:project-name/:object-name/:id | erases the :object-name with the :id ID |
-|  DELETE    | http://localhost:3002/api/:project-name/:object-name/all | erases all :object-name from :project-name |
-|  DELETE    | http://localhost:3002/api/:project-name/:object-name/all | erases all data from :project-name |
+|  PUT     | http://localhost:3002/api/:project-name/:object-name&id=:id | updates the :object-name with the :id ID |
+|  DELETE    | http://localhost:3002/api/:project-name/:object-name&id=:id | erases the :object-name with the :id ID |
+|  DELETE    | http://localhost:3002/api/:project-name/:object-name&id=all | erases all :object-name from :project-name |
+|  DELETE    | http://localhost:3002/api/:project-name&id=all | erases all data from :project-name |
 
 *URL Examples:*
 

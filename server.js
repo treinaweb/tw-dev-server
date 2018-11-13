@@ -66,16 +66,34 @@ server.listen(port, () => {
 /* Requisition Handlers
 *************************/
 function urlReader(url){
-    const [blank, course, className, id] = url.split('/');
+    const urlParts = removeArgs(url).split('/');
+    urlParts.splice(0, 1);
+    const className = urlParts.splice(urlParts.length - 1, 1)[0],
+        course = urlParts.join('/'),
+        urlParams = getUrlParams(url),
+        id = urlParams.id || null,
+        project = urlParams.project || null;
+
     return {
         course,
         className,
-        id
+        id,
+        project
     };
 }
 
 function removeUrlEndSlash(url){
     return url.replace(/\W*$/, '');
+}
+
+function getUrlParams(url){
+    url = url.replace(/.*\?/, '');
+    try{
+        JSON.parse('{"' + decodeURI(url.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}')
+        return JSON.parse('{"' + decodeURI(url.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
+    }catch(e){
+        return {};
+    }
 }
 
 function removeArgs(url){
@@ -155,7 +173,7 @@ async function execPut(urlObj, reqObj){
     return reqObj;
 }
 async function execDelete(urlObj){
-    if(urlObj.className === 'all'){
+    if(urlObj.project === 'all'){
         clearStorage(urlObj.course);
         return {};
     }else if(urlObj.id === 'all'){
