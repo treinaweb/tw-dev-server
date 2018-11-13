@@ -1,6 +1,6 @@
 {
   "name": "@treinaweb/tw-dev-server",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "simple data server for development",
   "main": "server.js",
   "scripts": {
