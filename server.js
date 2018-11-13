@@ -371,7 +371,7 @@ function getCurrentVersion(){
 function getRepositoryVersion(){
     let version = '0';
     return new Promise(resolve => {
-        https.get('https://raw.githubusercontent.com/treinaweb/tw-dev-server/master/package.json', (resp) => {
+        https.get(`https://raw.githubusercontent.com/treinaweb/tw-dev-server/master/package.json?${(new Date()).getTime()}`, (resp) => {
             let data = '';
             resp.on('data', (chunk) => {
                 data += chunk;
