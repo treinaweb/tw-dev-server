@@ -6,7 +6,7 @@ A powerful and lightweight server to be used for testing, local development and 
 
 Use it as static file server and CRUD server.
 
-<img src="./snapshot.png" width="300">
+<img src="https://raw.githubusercontent.com/treinaweb/tw-dev-server/master/snapshot.png" width="300">
 
 
 ## Installation
