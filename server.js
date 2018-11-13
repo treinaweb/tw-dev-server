@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
 const http = require('http'),
+    https = require('https'),
     fs = require('fs'),
     path = require('path'),
     ip = getIPAddress(),
     args = listArgs(),
+    dns = require('dns'),
     dbFolder = './.db/',
     memoryDB = {},
     port = getArg(args, 'port', 3002),
@@ -57,6 +59,7 @@ server.listen(port, () => {
     console.log(`\x1b[33mServing \x1b[36m${cliDirectory}`);
     console.log(`\x1b[33mServer running on:\nhttp://localhost:${port}\nhttp://${ip}:${port}`);
     console.log('\x1b[0mHit CTRL-C to stop the server\n');
+    checkUpdates();
 })
 
 
@@ -320,16 +323,67 @@ function getArg(args, argName, defaultValue){
 }
 
 async function checkUpdates(){
-    let isUpdateAvailable = false;
-    if(isUpdateAvailable){
+    if(await hasInternetConnection()){
+        Promise.all([getCurrentVersion(), getRepositoryVersion()])
+            .then(([currentVersion, repositoryVersion]) => {
+                //printAvailableUpdate(currentVersion, repositoryVersion)
+                printAvailableUpdate(currentVersion, repositoryVersion)
+            })
+    }
+}
+
+function printAvailableUpdate(currentVersion, newVersion){
+    if(currentVersion < newVersion){
         console.log(`
  \x1b[33m╭───────────────────────────────────────-──-──-──-──-─╮
  \x1b[33m│                                                     │
  \x1b[33m│  \x1b[0m               Update available                   \x1b[33m │
+ \x1b[33m│  \x1b[0m                ${currentVersion} → ${newVersion}                     \x1b[33m │
  \x1b[33m│  \x1b[0m Run \x1b[36mnpm i -g @treinaweb/tw-dev-server\x1b[0m to update  \x1b[33m │
  \x1b[33m│                                                     │
- \x1b[33m╰─────────────────────────────────────────-──-──-──-──╯`);
+ \x1b[33m╰─────────────────────────────────────────-──-──-──-──╯\x1b[0m`);
     }
+}
+
+function hasInternetConnection(){
+    return new Promise(resolve => {
+        dns.lookupService('8.8.8.8', 53, function(err, hostname, service){
+            if(err){
+                resolve(false)
+            }else{
+                resolve(true);
+            }
+        });
+    });
+}
+
+function getCurrentVersion(){
+    let version = '0';
+    return new Promise(resolve => {
+        fs.readFile('./package.json', (err, buf) => {
+            if(!err){
+                const content = JSON.parse(buf.toString());
+                version = content.version;
+            }
+            resolve(version);
+        });
+    });
+}
+function getRepositoryVersion(){
+    let version = '0';
+    return new Promise(resolve => {
+        https.get('https://raw.githubusercontent.com/treinaweb/tw-dev-server/master/package.json', (resp) => {
+            let data = '';
+            resp.on('data', (chunk) => {
+                data += chunk;
+            });
+            resp.on('end', () => {
+                const content = JSON.parse(data);
+                version = content.version;
+                resolve(version);
+            });
+        })
+    });
 }
 
 function printSignature(){
@@ -364,4 +418,3 @@ function printSignature(){
 
 
 
-checkUpdates()
