@@ -14,9 +14,9 @@ const http = require('http'),
 **********/
 
 const server = http.createServer(async (req, res) => {
-    const url = removeUrlEndSlash(req.url);
-    console.log(url)
-    if(url !== '/favicon.ico'){
+    const url = removeArgs(removeUrlEndSlash(req.url));
+
+    if(isAPI(url)){
         res.writeHead(200, {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin'  : '*',
@@ -28,6 +28,7 @@ const server = http.createServer(async (req, res) => {
 
         const urlObj = urlReader(req.url),
             method = req.method;
+
         let reqObj = {};
 
         if(req.method === 'POST' || req.method === 'PUT'){
@@ -35,6 +36,16 @@ const server = http.createServer(async (req, res) => {
         }
         const resObj = await handleRequisition(method, urlObj, reqObj);
         res.write(JSON.stringify(resObj));
+    }else{
+        try{
+            const filePath = isFilePath(url) ? url : `${url}/index.html`;
+            const content = fs.readFileSync(__dirname + filePath);
+            res.writeHead(200);
+            res.write(content);
+        }catch(e){
+            res.writeHead(404);
+            res.write('Not Found');
+        }
     }
     res.end();
 })
@@ -58,6 +69,31 @@ function urlReader(url){
 
 function removeUrlEndSlash(url){
     return url.replace(/\W*$/, '');
+}
+
+function removeArgs(url){
+    const index = url.indexOf('?');
+    if(index >= 0){
+        url = url.substring(0, index);
+    }
+    return url;
+}
+
+function isAPI(url){
+    return url.startsWith('/api/');
+}
+
+function isFilePath(url){
+    const pattern = /(.*)\.\w*$/;
+    return pattern.test(url);
+}
+
+function handleAPIResponse(){
+
+}
+
+function handleFileResponse(){
+
 }
 
 function handleRequisition(method, urlObj, reqObj){
