@@ -1,0 +1,20 @@
+.app-header{
+  color: #cbcbcb;
+  background-color: #333;
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  grid-gap: 20px;
+  align-items: center;
+  padding: 5px 15px
+}
+.app-logo-link{
+
+}
+.app-logo{
+  width: 100%;
+  filter: brightness(0%) invert(1);
+}
+
+.app-title{
+  font-size: 25px;
+}

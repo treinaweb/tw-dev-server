@@ -1,0 +1,41 @@
+.connection-status{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: red;
+  &.is-connected{
+    background-color: green;
+  }
+}
+
+.tw-select{
+  height: 40px;
+  font-size: 16px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.tw-input{
+  height: 40px;
+  width: 100%;
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+}
+
+.connection-container{
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-gap: 15px;
+  align-items: center;
+}
+.endpoint-container{
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-gap: 15px;
+  align-items: center;
+  margin: 15px 0;
+}
