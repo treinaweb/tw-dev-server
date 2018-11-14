@@ -369,7 +369,7 @@ function printAvailableUpdate(currentVersion, newVersion){
  \x1b[33m╭───────────────────────────────────────-──-──-──-──-─╮
  \x1b[33m│                                                     │
  \x1b[33m│  \x1b[0m               Update available                   \x1b[33m │
- \x1b[33m│  \x1b[0m                ${currentVersion} → ${newVersion}                     \x1b[33m │
+ \x1b[33m│  \x1b[0m               ${currentVersion} → ${newVersion}                    \x1b[33m │
  \x1b[33m│  \x1b[0m Run \x1b[36mnpm i -g @treinaweb/tw-dev-server\x1b[0m to update  \x1b[33m │
  \x1b[33m│                                                     │
  \x1b[33m╰─────────────────────────────────────────-──-──-──-──╯\x1b[0m`);
