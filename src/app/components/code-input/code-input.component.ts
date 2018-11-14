@@ -19,7 +19,7 @@ export class CodeInputComponent implements OnInit {
   ngOnInit() {
   }
 
-  onCodeChange(){
+  onCodeChange(event){
     this.codeChange.emit(this.code);
   }
 }
