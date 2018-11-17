@@ -7,12 +7,13 @@ const http = require('http'),
     ip = getIPAddress(),
     args = listArgs(),
     dns = require('dns'),
-    dbFolder = './.tw-db/',
     memoryDB = {},
     port = getArg(args, 'port', 3002),
     isTempData = getArg(args, 'temp', false),
     showVersion = getArg(args, 'version', false),
-    cliDirectory = `${process.cwd()}/`;
+    visibleData = getArg(args, 'visible-data', false),
+    dbFolder = './.tw-db/',
+    cliDirectory = visibleData ? './tw-db/' : './.tw-db/';
 
 let server;
 
