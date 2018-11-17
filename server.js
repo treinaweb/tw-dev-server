@@ -12,8 +12,8 @@ const http = require('http'),
     isTempData = getArg(args, 'temp', false),
     showVersion = getArg(args, 'version', false),
     visibleData = getArg(args, 'visible-data', false),
-    dbFolder = './.tw-db/',
-    cliDirectory = visibleData ? './tw-db/' : './.tw-db/';
+    dbFolder = visibleData ? './tw-db/' : './.tw-db/',
+    cliDirectory = `${process.cwd()}/`;
 
 let server;
 
