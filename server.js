@@ -178,6 +178,9 @@ async function handleInternalGet(requisition){
         case 'version':
             response = await checkUpdates();
             break;
+        case 'files-tree':
+            response = drawFilesTreeAsJson(walkSync(dbFolder));
+            break;
     }
     return response;
 }
@@ -328,6 +331,53 @@ function mkDirByPathSync(targetDir, {isRelativeToScript = false} = {}) {
 }
 
 
+
+function walkSync (dir, filesList = []) {
+    if (fs.existsSync(dir)) {
+        fs.readdirSync(dir).forEach(file => {
+            const dirFile = path.join(dir, file);
+            try {
+                filesList = walkSync(dirFile, filesList);
+            }
+            catch (err) {
+                if (err.code === 'ENOTDIR' || err.code === 'EBUSY') filesList = [...filesList, dirFile];
+                else throw err;
+            }
+        });
+        return filesList;
+    }
+    return filesList;
+}
+
+function drawFilesTreeAsJson(filesList = []){
+    let fileTree = {};
+
+    function mergePathsIntoFileTree(prevDir, currDir, i, filePath) {
+        if (i === filePath.length - 1) {
+            prevDir[currDir] = filePath.join('/');
+        }
+        if (!prevDir.hasOwnProperty(currDir)) {
+            prevDir[currDir] = {};
+        }
+
+        return prevDir[currDir];
+    }
+
+    function parseFilePath(filePath) {
+        let fileLocation = filePath.split('/');
+        if (fileLocation.length === 1) {
+            return (fileTree[fileLocation[0]] = filePath);
+        }
+        fileLocation.reduce(mergePathsIntoFileTree, fileTree);
+    }
+
+    filesList.forEach(parseFilePath);
+    return fileTree;
+}
+
+
+
+
 /* Memory DB
 *************/
 function readMemory(path, fileName){
@@ -464,6 +514,4 @@ function printSignature(){
             https://treinaweb.com.br`;
     console.log(twSignature);
 }
-
-
 
