@@ -163,11 +163,23 @@ function readReqObj(req){
 }
 
 async function execGet(urlObj){
+    if(urlObj.course === 'api/!!'){
+        return await handleInternalGet(urlObj.className);
+    }
     const list = await readFile(urlObj.course, `${urlObj.className}.json`);
     if(urlObj.id){
         return list.find(obj => obj.id === urlObj.id) || {};
     }
     return list;
+}
+async function handleInternalGet(requisition){
+    let response = {};
+    switch(requisition){
+        case 'version':
+            response = await checkUpdates();
+            break;
+    }
+    return response;
 }
 async function execPost(urlObj, reqObj){
     mkDirByPathSync(pathCreator(urlObj.course));
@@ -356,12 +368,12 @@ function getArg(args, argName, defaultValue){
 }
 
 async function checkUpdates(){
-    if(await hasInternetConnection()){
-        Promise.all([getCurrentVersion(), getRepositoryVersion()])
-            .then(([currentVersion, repositoryVersion]) => {
-                printAvailableUpdate(currentVersion, repositoryVersion)
-            })
-    }
+
+    return Promise.all([getCurrentVersion(), getRepositoryVersion()])
+        .then(([currentVersion, repositoryVersion]) => {
+            printAvailableUpdate(currentVersion, repositoryVersion);
+            return {"local":currentVersion,"latest":repositoryVersion}
+        })
 }
 
 function printAvailableUpdate(currentVersion, newVersion){
@@ -401,21 +413,26 @@ function getCurrentVersion(){
         });
     });
 }
-function getRepositoryVersion(){
+async function getRepositoryVersion(){
     let version = '0';
-    return new Promise(resolve => {
-        https.get(`https://raw.githubusercontent.com/treinaweb/tw-dev-server/master/package.json?${(new Date()).getTime()}`, (resp) => {
-            let data = '';
-            resp.on('data', (chunk) => {
-                data += chunk;
-            });
-            resp.on('end', () => {
-                const content = JSON.parse(data);
-                version = content.version;
-                resolve(version);
-            });
-        })
-    });
+    if(await hasInternetConnection()){
+        return new Promise(resolve => {
+            https.get(`https://raw.githubusercontent.com/treinaweb/tw-dev-server/master/package.json?${(new Date()).getTime()}`, (resp) => {
+                let data = '';
+                resp.on('data', (chunk) => {
+                    data += chunk;
+                });
+                resp.on('end', () => {
+                    const content = JSON.parse(data);
+                    version = content.version;
+                    resolve(version);
+                });
+            })
+        });
+    }else{
+        return Promise.resolve(version);
+    }
+
 }
 
 function printSignature(){
