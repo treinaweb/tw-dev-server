@@ -14,7 +14,7 @@ import { CodeInputComponent } from './components/code-input/code-input.component
 import { CodeOutputComponent } from './components/code-output/code-output.component';
 
 const monacoConfig: NgxMonacoEditorConfig = {
-  baseUrl: 'href=https://treinaweb.github.io/tw-dev-server/assets', // configure base path for monaco editor
+  baseUrl: 'https://treinaweb.github.io/tw-dev-server/assets', // configure base path for monaco editor
 };
 
 @NgModule({
