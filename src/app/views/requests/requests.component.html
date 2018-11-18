@@ -2,23 +2,28 @@
 <div class="address-container" >
   <div class="connection-container" >
     <i class="connection-status" [class.is-connected]="connectionStatus" ></i>
-    <input type="url" class="tw-input connection-url" [(ngModel)]="connectionUrl">
+    <div class="endpoint-path-container" >
+      <span class="endpoint-prefix" >http://</span>
+      <input type="url" class="tw-input connection-url" [(ngModel)]="connectionUrl" (keyup.enter)="onPlay()">
+    </div>
   </div>
   <div class="endpoint-container" >
     <select class="tw-select" [(ngModel)]="selectedRequisitionMethod" >
       <option [value]="method" *ngFor="let method of requisitionMethods">{{method}}</option>
     </select>
-    <input type="text" class="tw-input endpoint-address" [(ngModel)]="endPoint" (input)="saveEndpoint()">
+    <div class="endpoint-path-container" >
+      <span class="endpoint-prefix" >/api/</span>
+      <input type="text" class="tw-input endpoint-address" [(ngModel)]="endPoint" (input)="saveEndpoint()" (keyup.enter)="onPlay()">
+    </div>
   </div>
+  <app-play-button class="play-button" [class.is-connected]="connectionStatus" [isPlaying]="isPlaying" (click)="onPlay()" ></app-play-button>
 </div>
 
-<div>
-  {{ connectionUrl }}/api/{{ endPoint }}
-</div>
 
 <div class="code-editor-container" >
+  <h2 class="code-editor-title">Body:</h2>
   <app-code-input [(code)]="inputCode" ></app-code-input>
-  <app-play-button [isPlaying]="isPlaying" (click)="onPlay()" ></app-play-button>
+  <h2 class="code-editor-title">Reponse:</h2>
   <app-code-output [code]="outputCode" ></app-code-output>
 </div>
 

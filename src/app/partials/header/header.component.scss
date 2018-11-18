@@ -2,7 +2,7 @@
   color: #cbcbcb;
   background-color: #333;
   display: grid;
-  grid-template-columns: 190px 1fr;
+  grid-template-columns: 190px 1fr auto;
   grid-gap: 20px;
   align-items: center;
   padding: 5px 15px
@@ -17,4 +17,13 @@
 
 .app-title{
   font-size: 25px;
+}
+
+.links-list{
+  .links-list-item{
+
+  }
+  .list-link{
+    color: white;
+  }
 }

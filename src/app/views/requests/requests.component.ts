@@ -11,7 +11,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class RequestsComponent implements OnInit {
   connectionStatus = false;
-  connectionUrl = 'http://localhost:3002';
+  connectionUrl = 'localhost:3002';
   endPoint = localStorage.getItem('_endpoint') || '';
   inputCode = '';
   outputCode = '';
@@ -42,7 +42,7 @@ export class RequestsComponent implements OnInit {
     if(this.connectionStatus){
       this.isPlaying = true;
       console.log(this.inputCode, this.connectionUrl, this.endPoint, this.selectedRequisitionMethod)
-      const url = `${this.connectionUrl}/api/${this.endPoint}`;
+      const url = `http://${this.connectionUrl}/api/${this.endPoint}`;
 
       this.devServerService.sendCode(url, this.selectedRequisitionMethod, this.inputCode)
         .subscribe(
@@ -62,12 +62,23 @@ export class RequestsComponent implements OnInit {
   }
 
   testConnection(){
-    this.http.get(`${this.connectionUrl}/api/test/test`).subscribe(
+    this.http.get(`http://${this.connectionUrl}/api/!!/version`).subscribe(
       response => {
+        this.devServerService.version = response;
         this.connectionStatus = true;
+        this.getFilesTree();
       },
       error => {
         this.connectionStatus = false;
+      }
+    )
+  }
+
+  getFilesTree(){
+    this.http.get(`http://${this.connectionUrl}/api/!!/files-tree`).subscribe(
+      response => {
+        this.devServerService.filesTree = response;
+        console.log(response)
       }
     )
   }

@@ -5,6 +5,8 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class TwDevServerService {
+  version = {};
+  filesTree = {};
 
   constructor(
     private http: HttpClient

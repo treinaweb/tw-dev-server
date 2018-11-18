@@ -1,9 +1,11 @@
 .app-container{
   height: 100vh;
   display: grid;
-  grid-template-rows: 50px 1fr 20px;
+  grid-template-rows: auto 1fr auto;
 }
 
 .main-container{
   padding: 15px;
+  background-color: #162a3a;
+  color: white;
 }
