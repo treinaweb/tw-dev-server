@@ -266,6 +266,9 @@ Apache-2.0
 @angular/core
 MIT
 
+ngx-monaco-editor
+MIT
+
 @angular/common
 MIT
 
@@ -276,9 +279,6 @@ MIT
 MIT
 
 @angular/forms
-MIT
-
-ngx-monaco-editor
 MIT
 
 hotkeys-js
