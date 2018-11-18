@@ -9,9 +9,13 @@ import { RequestsComponent } from './views/requests/requests.component';
 import { PlayButtonComponent } from './components/play-button/play-button.component';
 import { HeaderComponent } from './partials/header/header.component';
 import { FooterComponent } from './partials/footer/footer.component';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { CodeInputComponent } from './components/code-input/code-input.component';
 import { CodeOutputComponent } from './components/code-output/code-output.component';
+
+const monacoConfig: NgxMonacoEditorConfig = {
+  baseUrl: 'href=https://treinaweb.github.io/tw-dev-server/assets', // configure base path for monaco editor
+};
 
 @NgModule({
   declarations: [
@@ -28,7 +32,7 @@ import { CodeOutputComponent } from './components/code-output/code-output.compon
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MonacoEditorModule.forRoot()
+    MonacoEditorModule.forRoot(monacoConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
