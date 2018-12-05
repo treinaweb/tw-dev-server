@@ -83,6 +83,10 @@ function startServer(){
 function urlReader(url){
     const urlParts = removeArgs(url).split('/');
     urlParts.splice(0, 1);
+    if(urlParts[urlParts.length - 1] === ''){
+        urlParts.splice(urlParts.length - 1, 1);
+    }
+
     const className = urlParts.splice(urlParts.length - 1, 1)[0],
         course = urlParts.join('/'),
         urlParams = getUrlParams(url),
