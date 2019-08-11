@@ -73,6 +73,8 @@ function startServer(){
         console.log(`\x1b[33mServing \x1b[36m${cliDirectory}`);
         console.log(`\x1b[33mServer running on:\nhttp://localhost:${port}\nhttp://${ip}:${port}`);
         console.log('\x1b[0mHit CTRL-C to stop the server\n');
+        console.log(`\x1b[0mGUI: \x1b[33mhttps://treinaweb.github.io/tw-dev-server/\x1b[0m`);
+
         checkUpdates();
     })
 }
