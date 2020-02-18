@@ -3,6 +3,7 @@
 const http = require('http'),
     https = require('https'),
     fs = require('fs'),
+    mime = require('mime'),
     path = require('path'),
     ip = getIPAddress(),
     args = listArgs(),
@@ -59,7 +60,15 @@ function startServer(){
             try{
                 const filePath = isFilePath(url) ? url : `${url}/index.html`;
                 const content = fs.readFileSync(cliDirectory + filePath);
-                res.writeHead(200);
+                const contentType = mime.getType(filePath);
+                res.writeHead(200, {
+                    'Content-Type': contentType,
+                    'Access-Control-Allow-Origin'  : '*',
+                    'Access-Control-Request-Method': '*',
+                    'Access-Control-Allow-Methods' : '*',
+                    'Access-Control-Allow-Headers' : '*',
+                    'Access-Control-Allow-Credentials': true
+                });
                 res.write(content);
             }catch(e){
                 res.writeHead(404);
