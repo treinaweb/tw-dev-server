@@ -24,7 +24,7 @@ Now you can visit [http://localhost:3002](http://localhost:3002) to view your se
 
 You can make requests on [https://treinaweb.github.io/tw-dev-server](https://treinaweb.github.io/tw-dev-server)
 
-<img src="https://raw.githubusercontent.com/treinaweb/tw-dev-server/master/snapshot-gui.png" width="300">
+<img src="https://raw.githubusercontent.com/treinaweb/tw-dev-server/master/snapshot-gui.png" width="500">
 
 ### Options
 
