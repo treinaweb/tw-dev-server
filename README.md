@@ -30,7 +30,6 @@ You can make requests on [https://treinaweb.github.io/tw-dev-server](https://tre
 | ------------- |-------------| -----|
 | --port     | port to use (defaults to 3002) | --port=4200 |
 | --temp     | data will be erased when stop the server (defaults to false) | --temp |
-| --visible-data     | data will be saved in a visible folder (defaults to false) | --visible-data |
 | --version     | shows current tool version (defaults to false) | --version |
 
 
