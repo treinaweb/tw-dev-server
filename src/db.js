@@ -67,6 +67,18 @@ function remove(db, id){
     })
 }
 
+function removeAll(db){
+    return new Promise((resolve, reject) => {
+        db.remove({}, {multi: true}, (error, numRemoved) => {
+            if(error){
+                reject(error);
+            }else{
+                resolve({});
+            }
+        })
+    })
+}
+
 module.exports = {
     async find(name, id){
         const db = createDB(name);
@@ -87,5 +99,9 @@ module.exports = {
     async remove(name, id){
         const db = createDB(name);
         return remove(db, id);
+    },
+    async removeAll(name){
+        const db = createDB(name);
+        return removeAll(db);
     }
 }
