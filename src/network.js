@@ -1,7 +1,20 @@
+const dns = require('dns');
+
 module.exports = {
     ip: getIPAddress(),
     get port(){
-        return 3002;
+        return require('./arguments').get('port', 3002);
+    },
+    hasInternetConnection(){
+        return new Promise(resolve => {
+            dns.lookupService('8.8.8.8', 53, function(err, hostname, service){
+                if(err){
+                    resolve(false)
+                }else{
+                    resolve(true);
+                }
+            });
+        });
     }
 }
 

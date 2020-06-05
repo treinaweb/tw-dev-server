@@ -4,12 +4,13 @@
   "description": "simple data server for development",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node src/main.js"
   },
   "keywords": [
     "server",
     "crud",
     "cli",
+    "database",
     "treinaweb",
     "hanashiro"
   ],
@@ -17,7 +18,9 @@
   "license": "ISC",
   "homepage": "https://treinaweb.com.br",
   "preferGlobal": true,
-  "bin": "./bin/server.js",
+  "bin": {
+    "tw-dev-server": "./bin/server.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/treinaweb/tw-dev-server.git"

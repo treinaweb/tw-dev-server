@@ -1,10 +1,23 @@
-const nedb = require('nedb');
+const Datastore = require('nedb');
+const path = require('path');
+const terminal = require('./terminal');
+const arguments = require('./arguments');
+const isTempData = arguments.get('temp', false);
+const dbFolder = '.tw-db';
+const memoryDB = {};
+
 
 function createDB(name){
-    return new nedb({
-        filename: `./.db/${name}.db`,
+    if(memoryDB.hasOwnProperty(name)){
+        return memoryDB[name];
+    }
+    const dbFilename = path.join(terminal.cliDirectory, dbFolder, `${name}.db`);
+    const db = new Datastore({
+        filename: isTempData ? undefined : dbFilename,
         autoload: true
     })
+    memoryDB[name] = db;
+    return db;
 }
 
 function find(db, id){
@@ -44,14 +57,19 @@ function insert(db, data){
 }
 
 function update(db, id, data){
-    return new Promise((resolve, reject) => {
-        db.update({_id: id}, {$set: data}, {  }, (error, updatedDocuments) => {
-            if(error){
-                reject(error);
-            }else{
-                resolve(data);
+    return new Promise( (resolve, reject) => {
+        db.update({_id: id}, 
+            {...data, _id: id}, 
+            {upsert: true, returnUpdatedDocs: true}, 
+            async (error, numAffected, affectedDocuments, upsert) => {
+                if(error){
+                    reject(error);
+                }else{
+                    console.log(999, numAffected, affectedDocuments, upsert)
+                    resolve(affectedDocuments);
+                }
             }
-        })
+        )
     })
 }
 
