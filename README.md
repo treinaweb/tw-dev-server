@@ -45,7 +45,6 @@ CRUD operations are available under "/api/".
 |  PUT     | http://localhost:3002/api/:project-name/:object-name&id=:id | updates the :object-name with the :id ID |
 |  DELETE    | http://localhost:3002/api/:project-name/:object-name&id=:id | erases the :object-name with the :id ID |
 |  DELETE    | http://localhost:3002/api/:project-name/:object-name&id=all | erases all :object-name from :project-name |
-|  DELETE    | http://localhost:3002/api/:project-name&id=all | erases all data from :project-name |
 
 *URL Examples:*
 
