@@ -1,6 +1,6 @@
 {
   "name": "@treinaweb/tw-dev-server",
-  "version": "1.0.22",
+  "version": "2.0.0",
   "description": "simple data server for development",
   "main": "server.js",
   "scripts": {
@@ -17,12 +17,16 @@
   "license": "ISC",
   "homepage": "https://treinaweb.com.br",
   "preferGlobal": true,
-  "bin": "./server.js",
+  "bin": "./bin/server.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/treinaweb/tw-dev-server.git"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "@koa/cors": "^3.1.0",
+    "koa": "^2.12.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-static-server": "^1.5.2",
+    "nedb": "^1.8.0"
   }
 }
