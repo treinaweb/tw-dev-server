@@ -2,9 +2,10 @@ const db = require('./db');
 
 module.exports = () => async function(ctx, next){
     if(ctx.url.startsWith('/api/')){
-        let response = {novaResposta: 125};
+        let response = {};
         const collectionName = getCollectionName(ctx.url);
-        const {query, body} = ctx.request;
+        const {query} = ctx.request;
+        const body = await readBody(ctx);
         switch(ctx.method){
             case 'GET': response = await handleGet(collectionName, query); break;
             case 'POST': response = await handlePost(collectionName, body); break;
@@ -15,6 +16,25 @@ module.exports = () => async function(ctx, next){
     }else{
         await next();
     }
+}
+
+function readBody(ctx){
+    if(ctx.request.header && ctx.request.header['content-type'] && ctx.request.header['content-type'].includes('application/json')){
+        return Promise.resolve(ctx.request.body)
+    }
+
+    return new Promise((resolve, reject) => {
+        let body = '';
+        ctx.req
+            .on('data', chunk => body += chunk.toString())
+            .on('end', () => {
+                try{
+                    resolve(JSON.parse(body));
+                }catch(error){
+                    resolve(ctx.request.body);
+                }
+            })
+    })
 }
 
 function getCollectionName(url){

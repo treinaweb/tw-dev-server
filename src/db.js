@@ -6,6 +6,15 @@ const isTempData = arguments.get('temp', false);
 const dbFolder = '.tw-db';
 const memoryDB = {};
 
+function renameField(object, oldName, newName){
+    try{
+        const newObject = {...object, [newName]: object[oldName]};
+        delete newObject[oldName];
+        return newObject;
+    }catch(error){
+        return object;
+    }
+}
 
 function createDB(name){
     if(memoryDB.hasOwnProperty(name)){
@@ -26,7 +35,9 @@ function find(db, id){
             if(error){
                 reject(error);
             }else{
-                resolve(document);
+                resolve(
+                    renameField(document, '_id', 'id')
+                );
             }
         })
     })
@@ -38,35 +49,48 @@ function list(db){
             if(error){
                 reject(error);
             }else{
-                resolve(documents);
+                resolve(
+                    documents.map(item => renameField(item, '_id', 'id'))
+                );
             }
         })
     })
 }
 
 function insert(db, data){
+    const dbData = renameField(data, 'id', '_id');
     return new Promise((resolve, reject) => {
-        db.insert(data, (error, newDocument) => {
+        db.insert(dbData, (error, newDocument) => {
             if(error){
                 reject(error);
             }else{
-                resolve(newDocument);
+                resolve(
+                    renameField(newDocument, '_id', 'id')
+                );
             }
         })
     })
 }
 
 function update(db, id, data){
+    const dbData = renameField(data, 'id', '_id');
     return new Promise( (resolve, reject) => {
         db.update({_id: id}, 
-            {...data, _id: id}, 
+            {...dbData, _id: id}, 
             {upsert: true, returnUpdatedDocs: true}, 
             async (error, numAffected, affectedDocuments, upsert) => {
                 if(error){
                     reject(error);
                 }else{
-                    console.log(999, numAffected, affectedDocuments, upsert)
-                    resolve(affectedDocuments);
+                    if(Array.isArray(affectedDocuments)){
+                        resolve(
+                            affectedDocuments.map(item => renameField(item, '_id', 'id'))
+                        );
+                    }else{
+                        resolve(
+                            renameField(affectedDocuments, '_id', 'id')
+                        );
+                    }
                 }
             }
         )
