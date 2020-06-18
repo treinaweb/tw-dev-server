@@ -42,16 +42,16 @@ CRUD operations are available under "/api/".
 | Method        | URL           | Description  |
 | ------------- |-------------| -----|
 |  GET    | http://localhost:3002/api/:project-name/:object-name | returns all :object-name from storage |
-|  GET    | http://localhost:3002/api/:project-name/:object-name&id=:id | returns the :object-name with the :id ID |
+|  GET    | http://localhost:3002/api/:project-name/:object-name?id=:id | returns the :object-name with the :id ID |
 |  POST    | http://localhost:3002/api/:project-name/:object-name | saves some data on :object-name |
-|  PUT     | http://localhost:3002/api/:project-name/:object-name&id=:id | updates the :object-name with the :id ID |
-|  DELETE    | http://localhost:3002/api/:project-name/:object-name&id=:id | erases the :object-name with the :id ID |
-|  DELETE    | http://localhost:3002/api/:project-name/:object-name&id=all | erases all :object-name from :project-name |
+|  PUT     | http://localhost:3002/api/:project-name/:object-name?id=:id | updates the :object-name with the :id ID |
+|  DELETE    | http://localhost:3002/api/:project-name/:object-name?id=:id | erases the :object-name with the :id ID |
+|  DELETE    | http://localhost:3002/api/:project-name/:object-name?id=all | erases all :object-name from :project-name |
 
 *URL Examples:*
 
-- http://localhost:3002/api/my-school/books&id=123
+- http://localhost:3002/api/my-school/book?id=123
 - http://localhost:3002/api/my-school/users/
 - http://localhost:3002/api/market/products/
 - http://localhost:3002/api/v1/market/products/
-- http://localhost:3002/api/some-prefix/another-prefix/market/products&id=12345
+- http://localhost:3002/api/some-prefix/another-prefix/market/products?id=12345
