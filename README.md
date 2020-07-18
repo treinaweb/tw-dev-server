@@ -4,7 +4,7 @@
 
 A powerful and lightweight server to be used for testing, local development and learning.
 
-Use it as static file server and CRUD server.
+Use it as static file server and CRUD server. It has live reload and browser sync too!
 
 <img src="https://raw.githubusercontent.com/treinaweb/tw-dev-server/master/snapshot.png" width="300">
 
@@ -33,6 +33,8 @@ You can make requests on [https://treinaweb.github.io/tw-dev-server](https://tre
 | --port     | port to use (defaults to 3002) | --port=4200 |
 | --temp     | data will be erased when stop the server (defaults to false) | --temp |
 | --version     | shows current tool version (defaults to false) | --version |
+| --sync     | live reload and browser sync (defaults to false) | --sync |
+| --live     | live reload (no browser sync) (defaults to false) | --live |
 
 
 ### CRUD Operations

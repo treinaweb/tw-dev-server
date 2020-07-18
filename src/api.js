@@ -1,6 +1,6 @@
 const db = require('./db');
 
-module.exports = () => async function(ctx, next){
+const ApiMiddleware = () => async function(ctx, next){
     if(ctx.url.startsWith('/api/')){
         let response = {};
         const collectionName = getCollectionName(ctx.url);
@@ -19,7 +19,7 @@ module.exports = () => async function(ctx, next){
 }
 
 function readBody(ctx){
-    if(ctx.request.header && ctx.request.header['content-type'] && ctx.request.header['content-type'].includes('application/json')){
+    if(ctx.request && ctx.request.header && ctx.request.header['content-type'] && ctx.request.header['content-type'].includes('application/json')){
         return Promise.resolve(ctx.request.body)
     }
 
@@ -78,4 +78,29 @@ async function handleDelete(collectionName, query){
         return db.removeAll(collectionName);
     }
     return db.remove(collectionName, query.id);
+}
+
+
+function removeUrlEndSlash(url){
+    return url.replace(/\W*$/, '');
+}
+
+module.exports = {
+    ApiMiddleware,
+    getUrlParams(url){
+        url = url.replace(/.*\?/, '');
+        try{
+            JSON.parse('{"' + decodeURI(url.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}')
+            return JSON.parse('{"' + decodeURI(url.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
+        }catch(e){
+            return {};
+        }
+    },
+    removeArgs(url){
+        const index = url.indexOf('?');
+        if(index >= 0){
+            url = url.substring(0, index);
+        }
+        return removeUrlEndSlash(url);
+    }
 }

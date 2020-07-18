@@ -2,7 +2,7 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const serve = require('koa-static-server');
 const cors = require('@koa/cors');
-const api = require('./api');
+const ApiMiddleware = require('./api').ApiMiddleware;
 const terminal = require('./terminal');
 const versionManager = require('./version-manager');
 
@@ -14,7 +14,7 @@ module.exports = {
             const app = new Koa();
             app.use(cors());
             app.use(bodyParser());
-            app.use(api());
+            app.use(ApiMiddleware());
             app.use(serve({
                 rootDir: terminal.cliDirectory,
             }));
