@@ -1,6 +1,6 @@
 {
   "name": "@treinaweb/tw-dev-server",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "simple data server for development",
   "main": "server.js",
   "scripts": {
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
+    "browser-sync": "^2.26.10",
     "koa": "^2.12.0",
     "koa-bodyparser": "^4.3.0",
     "koa-static-server": "^1.5.2",
