@@ -1,6 +1,4 @@
-const server = require('./server'),
-    serverLive = require('./server-live'),
-    arguments = require('./arguments'),
+const arguments = require('./arguments'),
     port = arguments.get('port', 3002),
     isTempData = arguments.get('temp', false),
     showVersion = arguments.get('version', false),
@@ -8,9 +6,9 @@ const server = require('./server'),
     isLive = arguments.get('live', false),
     isBrowserSync = arguments.get('sync', false);
 
-const activeServer = (isLive || isBrowserSync) ? serverLive : server;
+const server = (isLive || isBrowserSync) ? require('./server-live') : require('./server');
 
-activeServer.start({
+server.start({
    port,
    isTempData,
    showVersion,
