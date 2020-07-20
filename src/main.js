@@ -1,4 +1,6 @@
-const arguments = require('./arguments'),
+const terminal = require('./terminal'),
+    arguments = require('./arguments'),
+    directory = arguments.get('dir', terminal.cliDirectory),
     port = arguments.get('port', 3002),
     isTempData = arguments.get('temp', false),
     showVersion = arguments.get('version', false),
@@ -9,6 +11,7 @@ const arguments = require('./arguments'),
 const server = (isLive || isBrowserSync) ? require('./server-live') : require('./server');
 
 server.start({
+   directory,
    port,
    isTempData,
    showVersion,
