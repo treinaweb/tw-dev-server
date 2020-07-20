@@ -57,6 +57,10 @@ module.exports = {
 
 
         }
+    },
+    stop(){
+        browserSync.exit();
+        process.exit();
     }
 }
 

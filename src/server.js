@@ -6,6 +6,8 @@ const ApiMiddleware = require('./api').ApiMiddleware;
 const terminal = require('./terminal');
 const versionManager = require('./version-manager');
 
+let server = null;
+
 module.exports = {
     start(options){
         if(options.showVersion){
@@ -18,11 +20,17 @@ module.exports = {
             app.use(serve({
                 rootDir: terminal.cliDirectory,
             }));
-            app.listen(options.port, () => {
+            server = app.listen(options.port, () => {
                 terminal.printSignature();
                 terminal.printServerRunningInfo();
                 versionManager.checkUpdates();
             })
+        }
+    },
+    stop(){
+        if(server){
+            server.close();
+            server = null;
         }
     }
 }
