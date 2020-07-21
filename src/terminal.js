@@ -1,8 +1,10 @@
 const network = require('./network');
 const versionManager = require('./version-manager');
+const arguments = require('./arguments');
+const cliDirectory = arguments.get('dir', `${process.cwd()}/`);
 
 const terminal = {
-    cliDirectory: `${process.cwd()}/`,
+    cliDirectory,
     printSignature(){
         const twSignature = `
     \x1b[36m          ,*********************.
@@ -31,8 +33,8 @@ const terminal = {
            https://treinaweb.com.br`;
         console.log(twSignature);
     },
-    printServerRunningInfo(dir){
-        console.log(`\x1b[33mServing \x1b[36m${dir || terminal.cliDirectory}`);
+    printServerRunningInfo(){
+        console.log(`\x1b[33mServing \x1b[36m${terminal.cliDirectory}`);
         console.log(`\x1b[33mServer running on:\nhttp://localhost:${network.port}\nhttp://${network.ip}:${network.port}`);
         console.log('\x1b[0mHit CTRL-C to stop the server\n');
         console.log(`\x1b[0mGUI: \x1b[33mhttps://treinaweb.github.io/tw-dev-server/\x1b[0m`);

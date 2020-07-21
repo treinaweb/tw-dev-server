@@ -18,11 +18,11 @@ module.exports = {
             app.use(bodyParser());
             app.use(ApiMiddleware());
             app.use(serve({
-                rootDir: options.directory,
+                rootDir: terminal.cliDirectory,
             }));
             server = app.listen(options.port, () => {
                 terminal.printSignature();
-                terminal.printServerRunningInfo(options.directory);
+                terminal.printServerRunningInfo();
                 versionManager.checkUpdates();
             })
         }

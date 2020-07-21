@@ -22,7 +22,7 @@ module.exports = {
                 open: false,
                 cors: true,
                 notify: false,
-                server: options.directory,
+                server: terminal.cliDirectory,
                 watchEvents: ['change'],
                 logLevel: "silent",
                 port: options.port,
@@ -51,7 +51,7 @@ module.exports = {
                 ]
             }, () => {
                 terminal.printSignature();
-                terminal.printServerRunningInfo(options.directory);
+                terminal.printServerRunningInfo();
                 versionManager.checkUpdates();
             });
 
