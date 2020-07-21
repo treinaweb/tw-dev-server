@@ -8,10 +8,15 @@ module.exports = {
         if(options.showVersion){
             terminal.printCurrentVersion();
         }else{
-            browserSync.watch('**/**.html', browserSync.reload)
-            browserSync.watch('**/**.js', browserSync.reload)
+            const watchOptions = {
+                cwd: terminal.cliDirectory,
+                ignored: ['node_modules', '.tw-db']
+            };
+            
+            browserSync.watch('**/**.html', watchOptions, browserSync.reload)
+            browserSync.watch('**/**.js', watchOptions, browserSync.reload)
 
-            browserSync.watch('**/*.css', function (event, file) {
+            browserSync.watch('**/*.css', watchOptions, function (event, file) {
                 if (event === 'change') {
                     browserSync.reload(file);
                 }
