@@ -73,6 +73,7 @@ const CodeEditor: React.FC<CodeEditorProps> = (props) => {
     }
 
     return (
+        //@ts-ignore
         <CodeEditorContainer ref={componentRoot}>
             {isBrowser && (
                 <AceEditor

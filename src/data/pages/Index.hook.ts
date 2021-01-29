@@ -7,7 +7,7 @@ function createBaseUrl(url: string): string {
 }
 
 export function useIndexPage() {
-    const timer = useRef();
+    const timer = useRef(0);
     const [isConnected, setConnected] = useState(false);
     const [url, setUrl] = useState(
         LocalStorageService.get('url', 'localhost:3002')
@@ -31,7 +31,7 @@ export function useIndexPage() {
         LocalStorageService.set('url', url);
         clearInterval(timer.current);
         checkConnection();
-        timer.current = setInterval(checkConnection, 2500);
+        timer.current = window.setInterval(checkConnection, 2500);
         return () => {
             clearInterval(timer.current);
         };
@@ -58,7 +58,7 @@ export function useIndexPage() {
         }
         switch (method) {
             case 'GET':
-                ApiService.get(baseUrl, endpoint).then((response) =>
+                ApiService.get(baseUrl, endpoint).then((response: any) =>
                     setResponseCode(JSON.stringify(response, null, 4))
                 );
                 break;
@@ -67,7 +67,7 @@ export function useIndexPage() {
                     baseUrl,
                     endpoint,
                     JSON.parse(bodyCode)
-                ).then((response) =>
+                ).then((response: any) =>
                     setResponseCode(JSON.stringify(response, null, 4))
                 );
                 break;
@@ -76,12 +76,12 @@ export function useIndexPage() {
                     baseUrl,
                     endpoint,
                     JSON.parse(bodyCode)
-                ).then((response) =>
+                ).then((response: any) =>
                     setResponseCode(JSON.stringify(response, null, 4))
                 );
                 break;
             case 'DELETE':
-                ApiService.delete(baseUrl, endpoint).then((response) =>
+                ApiService.delete(baseUrl, endpoint).then((response: any) =>
                     setResponseCode(JSON.stringify(response, null, 4))
                 );
                 break;
