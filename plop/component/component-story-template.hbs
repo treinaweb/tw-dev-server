@@ -1,0 +1,16 @@
+import { Story, Meta } from '@storybook/react';
+
+import {{name}}, { {{name}}Props } from './{{name}}';
+
+export default {
+    title: '{{type}}/{{name}}',
+    component: {{name}},
+    argTypes: {},
+} as Meta;
+
+const Template: Story<{{name}}Props> = ({ children, ...args }) => (
+    <{{name}} {...args}>{children}</{{name}}>
+);
+
+export const Default = Template.bind({});
+Default.args = {};

@@ -1,57 +1,34 @@
-# TW Dev Server
-[https://treinaweb.com.br](https://treinaweb.com.br)
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Getting Started
 
-A powerful and lightweight server to be used for testing, local development and learning.
+First, run the development server:
 
-Use it as static file server and CRUD server.
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-<img src="https://raw.githubusercontent.com/treinaweb/tw-dev-server/master/snapshot.png" width="300">
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## Installation
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-> npm i -g @treinaweb/tw-dev-server
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-This will install tw-dev-server globally so that it may be run from the command line.
+## Learn More
 
-## Usage
-> tw-dev-server
+To learn more about Next.js, take a look at the following resources:
 
-Now you can visit [http://localhost:3002](http://localhost:3002) to view your server
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### GUI
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-You can make requests on [https://treinaweb.github.io/tw-dev-server](https://treinaweb.github.io/tw-dev-server)
+## Deploy on Vercel
 
-### Options
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-| Name        | Description           | Example  |
-| ------------- |-------------| -----|
-| --port     | port to use (defaults to 3002) | --port=4200 |
-| --temp     | data will be erased when stop the server (defaults to false) | --temp |
-| --visible-data     | data will be saved in a visible folder (defaults to false) | --visible-data |
-| --version     | shows current tool version (defaults to false) | --version |
-
-
-### CRUD Operations
-
-CRUD operations are available under "/api/".
-
-| Method        | URL           | Description  |
-| ------------- |-------------| -----|
-|  GET    | http://localhost:3002/api/:project-name/:object-name | returns all :object-name from storage |
-|  GET    | http://localhost:3002/api/:project-name/:object-name&id=:id | returns the :object-name with the :id ID |
-|  POST    | http://localhost:3002/api/:project-name/:object-name | saves some data on :object-name |
-|  PUT     | http://localhost:3002/api/:project-name/:object-name&id=:id | updates the :object-name with the :id ID |
-|  DELETE    | http://localhost:3002/api/:project-name/:object-name&id=:id | erases the :object-name with the :id ID |
-|  DELETE    | http://localhost:3002/api/:project-name/:object-name&id=all | erases all :object-name from :project-name |
-|  DELETE    | http://localhost:3002/api/:project-name&id=all | erases all data from :project-name |
-
-*URL Examples:*
-
-- http://localhost:3002/api/my-school/books&id=123
-- http://localhost:3002/api/my-school/users/
-- http://localhost:3002/api/market/products/
-- http://localhost:3002/api/v1/market/products/
-- http://localhost:3002/api/some-prefix/another-prefix/market/products&id=12345
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

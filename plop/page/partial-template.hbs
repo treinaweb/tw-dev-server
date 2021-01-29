@@ -1,0 +1,13 @@
+import React from 'react';
+
+// import { Component } from './_{{createFilename name}}.styled';
+
+const {{name}}: React.FC = () => {
+    return (
+        <div>
+            <div>{{name}}</div>
+        </div>
+    );
+};
+
+export default {{name}};

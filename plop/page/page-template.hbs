@@ -1,0 +1,22 @@
+import React from 'react';
+import { GetStaticProps } from 'next';
+
+// import { Component } from '@styles/pages/{{getPath folder (createFilename name)}}.styled';
+
+export const getStaticProps: GetStaticProps = async () => {
+    return {
+        props: {
+            title: '{{name}}',
+        },
+    };
+};
+
+const {{name}}: React.FC = () => {
+    return (
+        <div>
+            <div>{{name}}</div>
+        </div>
+    );
+};
+
+export default {{name}};
