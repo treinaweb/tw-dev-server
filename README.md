@@ -6,7 +6,13 @@ A powerful and lightweight server to be used for testing, local development and 
 
 Use it as static file server and CRUD server. It has live reload and browser sync too!
 
+![Screen Preview](https://raw.githubusercontent.com/treinaweb/vscode-tw-dev-server/master/img/features-preview.gif)
+
 <img src="https://raw.githubusercontent.com/treinaweb/tw-dev-server/master/snapshot.png" width="300">
+
+
+## VS Code Extension
+This is the NPM Version. If you want, You can check the [VS Code Extension](https://github.com/treinaweb/vscode-tw-dev-server) version.
 
 
 ## Installation
